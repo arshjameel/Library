@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Library</h1>
+            <button class="addBookBtn btnDisplayForm">Add a Book</button>            
+        </div>
+        <dialog class="dialog">
+            <img src="./assets/close-cross-remove-delete-svgrepo-com.svg" 
+                alt="close-dialog-icon" class="close-dialog-btn">
+            <form action="" method="post">
+                <p class="form-row">
+                    <label for="title">Title</label>
+                    <input id="title"
+                        name="title"
+                        type="text" 
+                        required 
+                    />
+                </p>
+                <p class="form-row">
+                    <label for="author">Author</label>
+                    <input id="author"
+                        name="author"
+                        type="text" 
+                        required 
+                    />
+                </p>
+                <p class="form-row">
+                    <label for="pages">Pages</label>
+                    <input id="pages"
+                        name="pages"
+                        type="text" 
+                        required 
+                    />
+                </p>
+                <label for="read">Read: </label>
+                <input id="read-status"
+                        name="read"
+                        type="checkbox"
+                        value="true" 
+                        checked/>
+                <p class="form-row">
+                    <button type="submit">Add Book</button>
+                </p>
+            </form>
+        </dialog>
+        <div class="contentBox">
+        </div>
+        <div class="footer">
+            <p>&copy 2023 Arsh Jameel</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 50px;
+    border: 4px solid #4CAF50;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 50rem;
+    height: 50rem;
+    border: 4px solid red;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.header h1 {
+    font-size: 2rem;
+}
+
+.header p {
+    font-style: italic;
+}
+
+.addBookBtn {
+    background-color: red;
+    color: white;
+    padding: 20px 40px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.contentBox {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: blue;
+    gap: 20px;
+
+    padding: 25px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.contentBox > .item {
+    flex: 0 1 calc(50% - 20px);
+    min-width: 350px;
+    max-width: 1fr;
+    height: 175px;
+    gap: 10px;
+    box-sizing: border-box;
+
+    background-color: red;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 1rem;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+}
+
+.item p {
+    line-height: 1.5rem;
+}
+
+.item .title, .author {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.item .delete-btn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    align-self: start;
+    justify-self: end;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    position: relative;
+    width: 100%;
+    bottom: 0px;
+}
