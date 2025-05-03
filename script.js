@@ -1,5 +1,6 @@
-const myLibrary = [];
+const myLibrary = []; // all books are stored in this array
 
+// constructor
 function Book(id, title, author, pages, read) {
     this.id = id;
     this.title = title; 
@@ -8,6 +9,7 @@ function Book(id, title, author, pages, read) {
     this.read = read;
 }
 
+// push each book into the array to "add" them to the library
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
@@ -95,18 +97,20 @@ function renderBook(book) {
     container.appendChild(item);
 }
 
+// method to render all initial books
 function renderAllBooks() {
     container.innerHTML = ''; // Clear the container
     myLibrary.forEach(renderBook);
 }
 
-// Initial books
+// create the initial books
 const book1 = new Book(crypto.randomUUID(), "1984", "George Orwell", 328, true);
-const book2 = new Book(crypto.randomUUID(), "To Kill a Mockingbird", "Harper Lee", 281, false);
-const book3 = new Book(crypto.randomUUID(), "The Great Gatsby", "F. Scott Fitzgerald", 180, true);
-const book4 = new Book(crypto.randomUUID(), "Moby Dick", "Herman Melville", 635, false);
-const book5 = new Book(crypto.randomUUID(), "Pride and Prejudice", "Jane Austen", 279, true);
+const book2 = new Book(crypto.randomUUID(), "After the Quake", "Haruki Murakami", 192, true);
+const book3 = new Book(crypto.randomUUID(), "The Almanack of Naval Ravikant", "Eric Jorgenson", 242, true);
+const book4 = new Book(crypto.randomUUID(), "Crime and Punishment", "Fyodor Dostoevsky", 527, false);
+const book5 = new Book(crypto.randomUUID(), "The Castle", "Franz Kafka", 352, false);
 
+// add the initial books
 addBookToLibrary(book1);
 addBookToLibrary(book2);
 addBookToLibrary(book3);
@@ -117,36 +121,49 @@ const container = document.querySelector('.contentBox');
 renderAllBooks();
 
 const openBtn = document.querySelector('.btnDisplayForm');
-const closeBtn = document.querySelector('.close-dialog-btn');
 const dialog = document.querySelector('.dialog');
 const form = dialog.querySelector('form');
 
+const addButtonText = openBtn.textContent; // "Add a Book"
+
 // Show dialog on button click
 openBtn.addEventListener('click', () => {
-    dialog.show();
+    if (dialog.open) {
+        dialog.close();
+        openBtn.innerHTML = addButtonText;
+        openBtn.classList.remove('close-dialog-btn');
+    } else {
+        dialog.show();
+        // replace button text with an image of a cross (X)
+        openBtn.innerHTML = '<img src="./assets/close-cross-remove-delete-svgrepo-com.svg" alt="close-dialog-icon" class="close-dialog-icon">';
+        openBtn.classList.add('close-dialog-btn');
+    }
 });
-
-// Close dialog after submitting the form
-form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Prevent actual form submission
-    dialog.close();
-});
-
-// Hide dialog
-closeBtn.addEventListener('click', () => dialog.close());
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    // get info from user
     const title = document.querySelector('#title').value.trim();
     const author = document.querySelector('#author').value.trim();
     const pages = parseInt(document.querySelector('#pages').value);
     const read = document.querySelector('input[name="read"]').checked;
 
+    // add info to the library with a unique ID for each book
     const newBook = new Book(crypto.randomUUID(), title, author, pages, read);
     addBookToLibrary(newBook);
     renderBook(newBook);
 
-    dialog.close();
+    // disable that annoying message to confirm form resubmission
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }    
+
+    // reset the close button to prompt user to add another book
+    openBtn.textContent = addButtonText;
+    openBtn.classList.remove('close-dialog-btn');
+    // reset form to add a new book
     form.reset();
+    // close the dialog to all added books
+    dialog.close();
 });

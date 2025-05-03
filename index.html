@@ -13,11 +13,9 @@
             <h1>Library</h1>
             <div class="add-button-container">
                 <button class="addBookBtn btnDisplayForm">Add a Book</button>            
-            </div>
+            </div> 
         </div>
         <dialog class="dialog">
-            <img src="./assets/close-cross-remove-delete-svgrepo-com.svg" 
-                alt="close-dialog-icon" class="close-dialog-btn">
             <form action="" method="post">
                 <p class="form-row">
                     <label for="title">Title</label>
@@ -39,25 +37,31 @@
                     <label for="pages">Pages</label>
                     <input id="pages"
                         name="pages"
-                        type="text" 
+                        type="number"
+                        min="1" 
                         required 
                     />
                 </p>
-                <label for="read">Read: </label>
-                <input id="read-status"
+                <p class="read-row"> 
+                    <label for="read">Read: </label>
+                    <input id="read-status"
                         name="read"
                         type="checkbox"
                         value="true" 
-                        checked/>
-                <p class="form-row">
-                    <button type="submit">Add Book</button>
+                        checked
+                    /> 
                 </p>
+                <div class="button-row">
+                    <div class="add-button-container">
+                        <button class="addBookBtn" type="submit">Add Book</button>
+                    </div>
+                </div>
             </form>
         </dialog>
         <div class="contentBox">
         </div>
         <div class="footer">
-            <p>&copy 2023 Arsh Jameel</p>
+            <p>&copy <script>document.write(new Date().getFullYear());</script> Arsh Jameel</p>
         </div>
     </div>
 </body>
