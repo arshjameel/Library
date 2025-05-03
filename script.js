@@ -48,19 +48,29 @@ function renderBook(book) {
     p.innerHTML += '<br>Pages: ';
     p.appendChild(pagespan);
 
-    p.innerHTML += '<br> Read: ';
+    p.innerHTML += '<br>';
 
     const readLabel = document.createElement('label');
     readLabel.className = "read-switch";
+    readLabel.htmlFor = `read-${book.id}`; // Unique ID for each book
     
     const readInput = document.createElement('input');
     readInput.type = "checkbox";
+    readInput.id = `read-${book.id}`; // Match with label's for attribute
     readInput.checked = book.read;
+    readInput.className = "toggle-checkbox";
     readLabel.appendChild(readInput);
-    
-    const readSlider = document.createElement('span');
-    readSlider.className = 'read-slider';
-    readLabel.appendChild(readSlider);
+
+    // Create the button-like appearance
+    const toggleButton = document.createElement('span');
+    toggleButton.className = "toggle-button";
+    toggleButton.textContent = book.read ? "READ" : "UNREAD";
+    readLabel.appendChild(toggleButton);
+
+    readInput.addEventListener('change', function() {
+        toggleButton.textContent = this.checked ? "READ" : "UNREAD";
+        book.read = this.checked;
+    });      
 
     p.appendChild(readLabel);
 
